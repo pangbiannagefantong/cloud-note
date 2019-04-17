@@ -1,0 +1,42 @@
+.w1170{
+    width: 1170px;
+}
+.register{
+    width: 714px;
+    height: 410px;
+    margin-top:80px;
+    margin-left: 200px;
+    background-color: white;
+}
+h2{
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    padding-top: 30px;
+}
+
+.item{
+    width: 300px;
+    height: 46px;
+    margin-top: 30px;
+    margin-left: 200px;
+    padding-left: 15px;
+    border-radius: 7px;
+    border:1px solid #f1f1f1;
+    
+
+}
+.btn1{
+    width: 300px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 200px;
+    border-radius: 5px;
+    border: none;
+    background-color:#409eff;
+    color: white;
+    cursor: pointer;
+}
+.btn:hover{
+    opacity: 0.7;
+}

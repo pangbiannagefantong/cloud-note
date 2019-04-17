@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/index.css">
+    <link rel="stylesheet" href="../stylesheets/reset.css">
+    <link rel="stylesheet" href="../stylesheets/write.css">
+</head>
+<body>
+    <!-- <div class="header">
+        <div class="w1170">
+            <h1>云笔记</h1>
+            <button class="header-btn"><span>写笔记</span></button>
+        </div>
+    </div> -->
+    <div class="w1170 writepage">
+        <div class="writewrap">
+            <div class="writetitle">标题</div>
+            <input class="writetitlecontent" type="text" placeholder="请输入标题">
+        </div>
+        <div class="writecontent ">
+            <div class="writetitle writecontents" >内容</div>
+            <div id="editor" ></div>
+            <div class="tags">
+                <span class="tag">
+                    标签：
+                </span>
+                <span>
+                    <button class="tag1">VueJs</button>
+                </span>
+                <span>
+                    <button class="tag1 tag2">Html</button>
+                </span>
+                <span>
+                    <button class="tag1 tag2">css</button>
+                </span>
+                <span>
+                    <button class="tag1 tag2">javascript</button>
+                </span>
+            </div>
+        </div>
+        <button class=" release">发布笔记</button>
+    </div>
+</body>
+<script src="../javascripts/wangeditor.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var E = window.wangEditor
+    var editor = new E("#editor")
+    editor.create()
+    let title = document.querySelector(".writetitlecontent")
+    let btn = document.querySelector(".release")
+    axios.get("/author").then(res =>{
+
+        // console.log(1111);
+        
+        console.log(res.data.data.name);
+        
+        btn.onclick = () => {
+            let time = new Date()
+            let year = time.getFullYear()
+            let month = time.getMonth()+1;
+            let day = time.getDate()
+            let realTime = `${year}-${month}-${day}`;
+            // console.log(realTime);
+            axios.post("/article",{
+                author: res.data.data.name,
+                title:title.value,
+                times:realTime,
+                content:editor.txt.html()
+            }).catch(err =>{
+                console.log(err);
+            }).then(data =>{
+                alert(data.data.msg)
+            })
+            window.location.href = "http://localhost:3000"
+        }    
+    })
+    
+</script>
+</html>

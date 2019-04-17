@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/index.css">
+    <link rel="stylesheet" href="../stylesheets/reset.css">
+</head>
+<body>
+    <div class="header">
+        <div class="w1170">
+            <h1>云笔记</h1>
+            <button class="header-btn"><span>写笔记</span></button>
+        </div>
+    </div>
+    <div class="w1170">
+        <div class="banner">
+            <img src="../images/banner.jpg" alt="">
+            <div class="desc">十三亿人都会用的云笔记</div>
+        </div>
+       <div class="loginbox">
+        
+       </div>
+
+        <div class="bottom-box w1170">
+              
+        </div>
+        
+        
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+
+   axios.get("/status").then(res =>{
+        let msg = res.data.msg;
+        if(msg == 0){
+            let str = `
+            <div class="login">
+                <div>
+                    <input type="text" placeholder="账号" class="item">
+                </div>
+                <div>
+                    <input type="password" placeholder="密码" class="item">
+                </div>
+                <div>
+                    <button class="btn1">登录</button>
+                </div>
+                <div>
+                    <button class="btn2">注册</button>
+                </div>
+            </div>
+            `
+        const loginbox = document.querySelector(".loginbox")
+        loginbox.innerHTML = str;
+
+
+        let loginbtn = document.querySelector(".btn1");
+        // let exitbtn = document.querySelector(".btn3")
+        let input = document.querySelectorAll("input");
+        
+
+        loginbtn.onclick = function(){
+            axios.post("/login",{
+                email:input[0].value,
+                password:input[1].value
+            }).then(res =>{
+                // alert(res.data.msg)
+                // console.log(res)
+                window.location.href = "http://localhost:3000";
+                });
+            }
+        let registerbtn = document.querySelector(".btn2")
+        registerbtn.onclick = function(){
+            axios.get("/register").then(res =>{
+                window.location.href = "http://localhost:3000/register"
+            })
+        }
+
+
+        }else{
+            let str=`
+            <div class="exit">
+                    <img src="../images/avatar1.jpg" alt="">
+                    <div class="name-item">
+                        <p>用户名:${res.data.data.name}</p>
+                    </div>
+                    <div class="email-item">
+                        <p>email:${res.data.data.email}</p>
+                    </div>
+                    <button class="item-btn btn3">退出登录</button>
+                </div>
+            `
+            const loginbox = document.querySelector(".loginbox")
+            loginbox.innerHTML = str;
+            
+            let exitbtn = document.querySelector(".btn3")
+            exitbtn.onclick = function(){
+                
+                axios.get("/exit").then(res =>{
+                    alert("退出成功")
+                    window.location.href = "http://localhost:3000"
+                })
+            }
+        }
+    })
+
+   let headerbtn = document.querySelector(".header-btn")
+   headerbtn.onclick = function(){
+       axios.get("/status").then(res =>{
+           let msg = res.data.msg
+           if(msg == 1){
+                axios.get("/write").then(res =>{
+                window.location.href = "http://localhost:3000/write"
+            })
+           }else{
+               alert("未登录不能发表笔记")
+           }
+       })
+       
+   }
+        
+   
+   axios.get("/allArticle").then( res =>{
+        let data = res.data.data
+        // console.log(data);
+            let str = ""
+            let box1 = document.querySelector(".bottom-box")
+            for(let i= 0;i<data.length;i++){
+                let str1 = `
+                <a href="http://localhost:3000/article?${data[i]._id}">
+                    <div class="bottom-box-item">
+                        <div class="item-left">
+                            <img src="../images/avatar1.jpg" alt="">
+                        </div>
+                        <div class="item-right fl">
+                            <div class="item-right-one">
+                                <span class="fl"}">${data[i].author}</span>
+                                <h2 class="hl">${data[i].title}</h2>
+                            </div>
+                            <div class="item-right-two">
+                                <span class="item-right-two1">浏览:</span>
+                                <span class="item-right-two2">回复:</span>
+                                <span class="item-right-two3">分类:</span>
+                            </div>
+                        </div>  
+                        <div class="item-content">
+                            ${data[i].content}
+                        </div>  
+                    </div>
+                </a>` 
+                str += str1;
+            }
+            box1.innerHTML = str 
+   })   
+</script>
+</html>

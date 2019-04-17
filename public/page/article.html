@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/index.css">
+    <link rel="stylesheet" href="../stylesheets/reset.css">
+    <link rel="stylesheet" href="../stylesheets/article.css">
+</head>
+<body>
+    <div class="header">
+        <div class="w1170">
+            <h1>云笔记</h1>
+            <button class="header-btn"><span>写笔记</span></button>
+        </div>
+    </div>
+    <div class="w1170">
+        <div class="content">
+            
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    let contentbox =document.querySelector(".content")
+        let str1 = window.location.search
+        console.log(str1);
+        let arr = str1.split("?")
+        console.log(arr);
+        axios.post("/content",{
+            _id:arr[1]
+        }).then(data =>{
+            let datas = data.data.data;
+            console.log(datas)
+            let str = `
+            <h2>${datas.title}</h2>
+            <div class="content-item">
+                <span>作者：</span>
+                <span class="content-item2">${datas.author}</span>
+                <span class="content-item3">${datas.times}</span>
+            </div>
+            <div class="main-content">${datas.content}</div>
+            `
+            contentbox.innerHTML = str
+        })
+    
+</script>
+</html>

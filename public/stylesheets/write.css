@@ -1,0 +1,78 @@
+.w1170{
+    width: 1170px;
+}
+.writepage{
+    
+    background-color: white;
+}
+.writewrap{
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 8px 24px;
+    background: #fff;
+    border-radius: 4px;
+}
+.writetitle{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-top: 6px;
+}
+.writetitlecontent{
+    border: 1px solid #eee;
+    margin-top: 10px;
+    border-radius: 4px;
+    box-sizing:border-box;
+    color:#555;
+    line-height: 40px;
+    width: 100%;
+}
+.writecontent{
+    box-sizing: border-box;
+    padding:0 24px;
+    background: #fff;
+}
+.editor{
+    margin-top: 10px;
+}
+.tags{
+    margin-top: 20px;
+}
+.tag{
+    font-weight: 700;
+    color: #409eff;
+}
+.tag1{
+    border-radius: 5px;
+    cursor: pointer;
+    border:1px solid #dcdef6;
+    line-height: 1;
+    padding: 9px 15px;
+    display: inline-block;
+    font-weight: 500;
+    vertical-align: middle;
+    background-color: #fff;
+    color: #606266;
+    box-sizing: border-box;
+}
+.tag1:hover{
+    color:#409eff;
+}
+.tag2{
+    margin-left: 20px;
+}
+.release{
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    padding: 8px 24px;
+    background: #409eff;
+    color: white;
+    border-radius: 4px;
+    border:1px solid #f1f1f1;
+    cursor: pointer;
+}
+.release:hover{
+    opacity: 0.7;
+}

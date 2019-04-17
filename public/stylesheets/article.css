@@ -1,0 +1,23 @@
+.content{
+    background-color: white;
+}
+.content h2{
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.content .content-item{
+    text-align: center;
+    margin-top: 20px;
+}
+.content-item2{
+    color: #e67e22;
+}
+.content-item3{
+    margin-left: 10px;
+}
+.main-content{
+    text-align: center;
+}
